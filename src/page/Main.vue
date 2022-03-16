@@ -1,11 +1,13 @@
 <template>
-  <h1>Hello! last project!!</h1>
+  <PentagonChart />
 </template>
 
 <script>
+import PentagonChart from "../components/PentagonChart";
+
 export default {
   name: "App",
-  components: {},
+  components: { PentagonChart },
 };
 </script>
 
