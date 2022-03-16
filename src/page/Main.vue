@@ -1,16 +1,18 @@
 <template>
   <div>
-    <h1>Hello! last project!!</h1>
+    <MyResult />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
   </div>
 </template>
 
 <script>
 import TabPart from "../components/TabPart.vue";
+import MyResult from "../components/MyResult.vue";
 export default {
   name: "App",
   components: {
     TabPart,
+    MyResult
   },
   data() {
     return {
