@@ -37,7 +37,7 @@ export default defineComponent({
     },
   },
   setup() {
-    const data = ref([0, 0]);
+    // const data = ref([0, 0]);
 
     const options = ref({
       responsive: true,
