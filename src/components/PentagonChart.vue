@@ -1,11 +1,12 @@
 <template>
-  <RadarChart :chartData="data" :options="options" />
+  <RadarChart :chartData="matchData" :options="options" />
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import { RadarChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
+// import Data from "../Data";
 
 Chart.register(...registerables);
 
@@ -13,7 +14,7 @@ export default defineComponent({
   name: "APP",
   components: { RadarChart },
   setup() {
-    const data = {
+    const matchData = {
       labels: ["적극적인", "자신있는", "책임감있는", "개인주의", "수평적인"],
       datasets: [
         {
@@ -31,7 +32,7 @@ export default defineComponent({
       ],
     };
     const options = {};
-    return { data, options };
+    return { matchData, options };
   },
   methods: {
     show(idx) {
@@ -47,12 +48,9 @@ export default defineComponent({
     const { scale } = Chart.defaults;
     // plugins.legend.display = false;
     // plugins.tooltip.enabled = false;
-    scale.ticks = {
-      count: 5,
-      stepSize: 2,
-      display: false,
-    };
+
     scale.grid.borderDash = [5];
   },
+  beforeUpdate() {},
 });
 </script>
