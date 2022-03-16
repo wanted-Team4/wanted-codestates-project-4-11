@@ -1,11 +1,18 @@
 <template>
-  <h1>Hello! last project!!</h1>
+  <!-- <BarChart /> -->
+  <MyResult />
 </template>
 
 <script>
+import BarChart from "../components/BarChart.vue";
+import MyResult from "../components/MyResult.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    BarChart,
+    MyResult,
+  },
 };
 </script>
 
