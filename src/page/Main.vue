@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <NavBar />
     <PentagonChart />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
     <MyResult :currentTab="currentTab" />
@@ -10,9 +11,11 @@
 import PentagonChart from "../components/PentagonChart.vue";
 import TabPart from "../components/TabPart.vue";
 import MyResult from "../components/MyResult.vue";
+import NavBar from "../components/NavBar.vue";
 export default {
   name: "App",
   components: {
+    NavBar,
     PentagonChart,
     TabPart,
     MyResult,
