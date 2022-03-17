@@ -28,7 +28,7 @@ export default {
 e
 <style>
 .tabUl {
-  width: 325px;
+  width: 70%;
   height: 45px;
   display: flex;
   justify-content: center;
@@ -36,13 +36,14 @@ e
   border-radius: 4px;
   background-color: #f2f2f2;
   padding: 0px;
+  margin: auto;
 }
 .tabUl li {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 107.33px;
+  width: 33.3%;
   height: 43px;
   background-color: #f2f2f2;
   font-size: 12px;
@@ -50,7 +51,7 @@ e
 }
 .tabUl li.current {
   background: #ffffff;
-  width: 107.33px;
+  width: 33.3%;
   height: 43px;
   border-radius: 4px;
   border: 1px solid #f2f2f2;

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <PentagonChart />
-    <MyResult />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
+    <MyResult />
   </div>
 </template>
 
@@ -53,4 +53,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.container {
+  width: 60%;
+  margin: auto;
+}
+</style>
