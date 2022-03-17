@@ -20,17 +20,13 @@
       </div>
     </div>
     <div class="inner">
-      <div class="line"></div>
+      <div class="lineOne"></div>
       <div class="lineTwo"></div>
       <div class="lineThree"></div>
       <div class="lineFour"></div>
       <div class="lineFive"></div>
       <div id="col"></div>
-      <BarChart
-        :userScore="user"
-        :currentTab="currentTab"
-        :selectCompany="selectCompany"
-      />
+      <BarChart :currentTab="currentTab" :selectedCompany="selectedCompany" />
     </div>
   </div>
 </template>
@@ -47,16 +43,12 @@ const types = [
   ["수평사고", "위계사고"],
 ];
 
-const selectCompany = "삼성전자";
-
 export default {
   name: "App",
   data() {
     return {
       user: data.user,
-      // companyData: companyData,
       types: types,
-      selectCompany: selectCompany,
     };
   },
   methods: {
@@ -74,26 +66,12 @@ export default {
       }
       return color;
     },
-    // getCompanyScore(idx) {
-    //   if (!this.companyData) return 0;
-    //   return this.companyData[idx];
-    // },
   },
   components: { BarChart },
   props: {
-    // selectCompany: String,
     currentTab: Number,
+    selectedCompany: String,
   },
-
-  // beforeUpdate() {
-  //   if (this.selectCompany === "삼성전자") {
-  //     this.companyData = data.company.삼성전자;
-  //   } else if (this.selectCompany === "카카오") {
-  //     this.companyData = data.company.카카오;
-  //   } else {
-  //     this.companyData = data.company.LG;
-  //   }
-  // },
 };
 </script>
 
@@ -108,6 +86,7 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin-bottom: 2rem;
 }
 .title {
   text-align: center;
@@ -146,40 +125,39 @@ h1 {
 .inner {
   width: 165px;
   height: 180px;
-  /* border: 1px solid black; */
   position: absolute;
   top: 110px;
   background-color: #fff;
 }
-.line {
+.lineOne {
   width: 165px;
   height: 17px;
   border-bottom: 1px solid #d1d1d1;
-  position: fixed;
+  position: absolute;
 }
 .lineTwo {
   width: 165px;
   height: 50px;
   border-bottom: 1px solid #d1d1d1;
-  position: fixed;
+  position: absolute;
 }
 .lineThree {
   width: 165px;
   height: 83px;
   border-bottom: 1px solid #d1d1d1;
-  position: fixed;
+  position: absolute;
 }
 .lineFour {
   width: 165px;
   height: 116px;
   border-bottom: 1px solid #d1d1d1;
-  position: fixed;
+  position: absolute;
 }
 .lineFive {
   width: 165px;
   height: 149px;
   border-bottom: 1px solid #d1d1d1;
-  position: fixed;
+  position: absolute;
 }
 .rowOne {
   border: 1px solid black;

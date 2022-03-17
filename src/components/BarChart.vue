@@ -25,7 +25,7 @@ export default defineComponent({
   name: "App",
   components: { BarChart },
   props: {
-    selectCompany: String,
+    selectedCompany: String,
     currentTab: Number,
   },
   data() {
@@ -84,21 +84,21 @@ export default defineComponent({
     }
     function checkTabTwo() {
       data.value[0] = [0];
-      if (this.selectCompany === "삼성전자") {
+      if (this.selectedCompany === "삼성전자") {
         data.value[1] = this.companyScore.삼성전자;
-      } else if (this.selectCompany === "카카오") {
+      } else if (this.selectedCompany === "카카오") {
         data.value[1] = this.companyScore.카카오;
-      } else {
+      } else if (this.selectedCompany === "LG") {
         data.value[1] = this.companyScore.LG;
       }
     }
     function checkTabThree() {
       data.value[0] = [-8, -10, -10, 7, -6];
-      if (this.selectCompany === "삼성전자") {
+      if (this.selectedCompany === "삼성전자") {
         data.value[1] = this.companyScore.삼성전자;
-      } else if (this.selectCompany === "카카오") {
+      } else if (this.selectedCompany === "카카오") {
         data.value[1] = this.companyScore.카카오;
-      } else {
+      } else if (this.selectedCompany === "LG") {
         data.value[1] = this.companyScore.LG;
       }
     }
