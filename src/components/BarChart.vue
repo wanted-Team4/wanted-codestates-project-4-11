@@ -15,30 +15,26 @@ import { BarChart } from "vue-chart-3";
 import { computed, defineComponent, ref } from "vue";
 Chart.register(...registerables);
 
+const companyScore = {
+  삼성전자: [-10, -9, -9, -5, 7],
+  카카오: [-6, -7, -7, -8, 9],
+  LG: [-7, -7, -7, -7, -7],
+};
+
 export default defineComponent({
   name: "App",
   components: { BarChart },
   props: {
-    userScore: Number,
-    companyScore: Number,
-    selectCompany: String,
+    selectedCompany: String,
     currentTab: Number,
   },
   data() {
     return {
-      currentUserScore: this.userScore,
-      currentCompanyScore: this.companyScore,
-      matchData: 6,
+      companyScore: companyScore,
     };
   },
-  methods: {
-    test() {
-      console.log(this.userScore, this.companyScore, this.currentData);
-    },
-  },
   setup() {
-    // const data = ref([0, 0]);
-
+    const data = ref([[-8, -10, -10, 7, -6], []]);
     const options = ref({
       responsive: true,
       plugins: {
@@ -66,55 +62,57 @@ export default defineComponent({
         },
       },
     });
+
     const testData = computed(() => ({
       labels: ["적극적인", "자신있는", "책임있는", "개인주의", "수평적인"],
       datasets: [
         {
-          data: [-8, -10, -10, 7, -6],
+          data: data.value[0],
           backgroundColor: "#6e3cf9",
           barThickness: 5,
         },
         {
-          // 삼성전자
-          data: [-10, -9, -9, -5, 7],
+          data: data.value[1],
           backgroundColor: "#ffd966",
           barThickness: 5,
         },
-        // {
-        //   // 카카오
-        //   data: [-6, -7, -7, -8, 9],
-        //   backgroundColor: "#ffd966",
-        //   barThickness: 5,
-        // },
-        // {
-        //   // LG
-        //   data: [-7, -7, -7, -7, -7],
-        //   backgroundColor: "#ffd966",
-        //   barThickness: 5,
-        // },
       ],
     }));
-    return { testData, options };
+
+    function checkTabOne() {
+      data.value[1] = [0];
+    }
+    function checkTabTwo() {
+      data.value[0] = [0];
+      if (this.selectedCompany === "삼성전자") {
+        data.value[1] = this.companyScore.삼성전자;
+      } else if (this.selectedCompany === "카카오") {
+        data.value[1] = this.companyScore.카카오;
+      } else if (this.selectedCompany === "LG") {
+        data.value[1] = this.companyScore.LG;
+      }
+    }
+    function checkTabThree() {
+      data.value[0] = [-8, -10, -10, 7, -6];
+      if (this.selectedCompany === "삼성전자") {
+        data.value[1] = this.companyScore.삼성전자;
+      } else if (this.selectedCompany === "카카오") {
+        data.value[1] = this.companyScore.카카오;
+      } else if (this.selectedCompany === "LG") {
+        data.value[1] = this.companyScore.LG;
+      }
+    }
+    return { testData, options, checkTabOne, checkTabTwo, checkTabThree };
   },
 
   beforeUpdate() {
-    // 모두 0, 본인 1, 회사 2
-    if (this.currentTab === 2) {
-      this.testData.datasets[1].data[0] = 0;
+    if (this.currentTab === 1) {
+      this.checkTabOne();
+    } else if (this.currentTab === 2) {
+      this.checkTabTwo();
     } else {
-      this.testData.datasets[0].data[0] =
-        this.userScore > 5 ? this.userScore * -1 : this.userScore;
+      this.checkTabThree();
     }
-    if (!this.selectCompany || this.currentTab === 1) {
-      this.testData.datasets[0].data[0] = 0;
-    } else {
-      this.testData.datasets[0].data[1] =
-        this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
-    }
-  },
-  beforeMount() {
-    this.testData.datasets[0].data;
-    // this.userScore > 5 ? this.userScore * -1 : this.userScore;
   },
 });
 </script>

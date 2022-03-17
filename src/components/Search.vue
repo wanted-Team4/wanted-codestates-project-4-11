@@ -19,8 +19,8 @@
             />
           </svg>
       </div>
-      <div class="selectedDiv" v-if="selectedCompany">
-        <span>{{ selectedCompany }}</span>
+      <div class="selectedDiv" v-if="select">
+        <span>{{ select }}</span>
         <button class="resetButton" @click="resetSelectedCompany" >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -63,17 +63,19 @@
 <script>
 export default {
   name: "App",
+  props: ["selectedCompany"],
   data() { 
     return { 
       keyWord: "", 
       company: ["삼성전자", "카카오", "LG"],
       suggestion: [],
-      selectedCompany: "", 
+      select: this.selectedCompany,
     }; 
   }, 
   methods: { 
     resetSelectedCompany () {
-      this.selectedCompany = "";
+      this.select = "";
+      this.$emit('changeSelect', "");
     },
     onKeyupHandler (e) {
       this.keyWord = e.target.value;
@@ -86,7 +88,8 @@ export default {
       )
     },
     onClickHandler (e) {
-      this.selectedCompany = e.target.innerText;
+      this.select = e.target.innerText;
+      this.$emit('changeSelect', e.target.innerText);
       this.keyWord = "";
     }
   },
@@ -96,9 +99,11 @@ export default {
 
 <style>
 .wrapper {
-  width: 350px;
+  width: 500px;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .resultDiv {
@@ -138,11 +143,13 @@ export default {
   border: 1px solid #F2F2F2;
   background-color: #F8F8F8;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-sizing: border-box;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .searchInput {
   padding-left: 10px;
+  width: 490px;
   box-sizing: border-box;
   border: none;
   background-color: transparent;
@@ -155,20 +162,32 @@ export default {
 }
 
 .suggestions {
+  width: 500px;
   list-style: none;
-  position: relative;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid #F2F2F2;
+  z-index: 8;
+  padding: 10px 10px 10px 10px;
   margin: 0;
-  padding: 10px 0px 10px 0px;
-  margin: 0px 15px 0px 15px;
-  border-top: 1px solid #646464;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.suggestions::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: calc(100%);
+  border-bottom: 1px solid black;
 }
 
 .suggestion {
-  padding-left: 10px;
+  vertical-align: baseline;
+  padding-left: 5px;
   font-size: 1rem;
-  height: 13px;
-  padding: 10px 10px 5px 5px;
-  height: 30px;
 }
 
 .suggestion:hover{

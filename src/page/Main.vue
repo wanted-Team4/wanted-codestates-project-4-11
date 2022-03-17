@@ -1,8 +1,10 @@
 <template>
   <div class="container">
+    <NavBar />
+    <Search :selectedCompany="selectedCompany" @changeSelect="changeSelect" />
     <PentagonChart />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
-    <MyResult :currentTab="currentTab" />
+    <MyResult :selectedCompany="selectedCompany" :currentTab="currentTab" />
   </div>
 </template>
 
@@ -10,15 +12,21 @@
 import PentagonChart from "../components/PentagonChart.vue";
 import TabPart from "../components/TabPart.vue";
 import MyResult from "../components/MyResult.vue";
+import Search from "../components/Search.vue";
+import NavBar from "../components/NavBar.vue";
+
 export default {
   name: "App",
   components: {
+    NavBar,
+    Search,
     PentagonChart,
     TabPart,
     MyResult,
   },
   data() {
     return {
+      selectedCompany: "",
       currentTab: 0,
       tabs: [
         {
@@ -48,6 +56,9 @@ export default {
   methods: {
     changeTab(i) {
       this.currentTab = i;
+    },
+    changeSelect(company) {
+      this.selectedCompany = company;
     },
   },
 };
