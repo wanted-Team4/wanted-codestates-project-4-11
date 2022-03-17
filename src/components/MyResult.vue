@@ -20,9 +20,11 @@
       </div>
     </div>
     <div class="inner">
-      <!-- <div class="line">
-        <div id="rowOne"></div>
-      </div> -->
+      <div class="line"></div>
+      <div class="lineTwo"></div>
+      <div class="lineThree"></div>
+      <div class="lineFour"></div>
+      <div class="lineFive"></div>
       <div id="col"></div>
       <BarChart :currentTab="currentTab" :companyScore="getCompanyScore(idx)" />
     </div>
@@ -151,16 +153,42 @@ h1 {
   top: 110px;
   background-color: #fff;
 }
-/* .line {
+.line {
   width: 165px;
+  height: 17px;
   border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineTwo {
+  width: 165px;
+  height: 50px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineThree {
+  width: 165px;
+  height: 83px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineFour {
+  width: 165px;
+  height: 116px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineFive {
+  width: 165px;
+  height: 149px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
 }
 .rowOne {
+  border: 1px solid black;
   width: 165px;
   height: 18px;
-  position: fixed;
-  z-index: 10;
-} */
+  z-index: 999;
+}
 #col {
   position: absolute;
   width: 83px;

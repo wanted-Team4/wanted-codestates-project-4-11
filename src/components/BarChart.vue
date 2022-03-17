@@ -74,12 +74,12 @@ export default defineComponent({
           backgroundColor: "#6e3cf9",
           barThickness: 5,
         },
-        // {
-        //   // 삼성전자
-        //   data: [-10, -9, -9, -5, 7],
-        //   backgroundColor: "#ffd966",
-        //   barThickness: 5,
-        // },
+        {
+          // 삼성전자
+          data: [-10, -9, -9, -5, 7],
+          backgroundColor: "#ffd966",
+          barThickness: 5,
+        },
         // {
         //   // 카카오
         //   data: [-6, -7, -7, -8, 9],
