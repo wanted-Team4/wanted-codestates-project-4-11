@@ -1,18 +1,21 @@
 <template>
   <div>
+    <PentagonChart />
     <MyResult />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
   </div>
 </template>
 
 <script>
+import PentagonChart from "../components/PentagonChart.vue";
 import TabPart from "../components/TabPart.vue";
 import MyResult from "../components/MyResult.vue";
 export default {
   name: "App",
   components: {
+    PentagonChart,
     TabPart,
-    MyResult
+    MyResult,
   },
   data() {
     return {

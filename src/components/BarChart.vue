@@ -16,7 +16,7 @@ import { computed, defineComponent, ref } from "vue";
 Chart.register(...registerables);
 
 export default defineComponent({
-  name: "Home",
+  name: "App",
   components: { BarChart },
   props: {
     userScore: Number,
@@ -106,5 +106,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>
