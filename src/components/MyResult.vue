@@ -5,26 +5,28 @@
       <h1>나의 결과는?</h1>
     </div>
     <div class="chartList" v-for="(score, idx) in user" :key="idx">
-      <div class="scoreList">
+      <div class="scoreList" :style="selectScoreColor(score)">
         <span class="score">{{ score }}/10</span>
       </div>
-      <div class="lefr">
-        {{ tendencies[idx][0] }}
+      <div class="left" :style="selectTypesColor(score)">
+        {{ types[idx][0] }}
       </div>
       <div class="empty"></div>
-      <div class="right">
-        {{ tendencies[idx][1] }}
+      <div class="right" :style="selectTypesColor(10 - score)">
+        {{ types[idx][1] }}
       </div>
-      <div class="scoreList">
+      <div class="scoreList" :style="selectScoreColor(10 - score)">
         <span class="score">{{ 10 - score }}/10</span>
       </div>
     </div>
     <div class="inner">
-      <!-- <div class="line">
-        <div id="rowOne"></div>
-      </div> -->
+      <div class="line"></div>
+      <div class="lineTwo"></div>
+      <div class="lineThree"></div>
+      <div class="lineFour"></div>
+      <div class="lineFive"></div>
       <div id="col"></div>
-      <BarChart />
+      <BarChart :currentTab="currentTab" :companyScore="getCompanyScore(idx)" />
     </div>
   </div>
 </template>
@@ -33,7 +35,7 @@
 import data from "../Data";
 import BarChart from "./BarChart.vue";
 
-const tendencies = [
+const types = [
   ["적극성", "수동성"],
   ["자신감", "신중함"],
   ["책임감", "무심함"],
@@ -46,59 +48,54 @@ export default {
     return {
       user: data.user,
       companyData: undefined,
-      tendencies: tendencies,
+      types: types,
+      selectCompany: "삼성전자",
     };
   },
-  // methods: {
-  //   selectTendencyColor(num) {
-  //     let color = "color:#3bbe70";
-  //     if (num < 5) {
-  //       color = "color:#000";
-  //     }
-  //     return color;
-  //   },
-  //   selectScoreColor(num) {
-  //     let color = "color:#538035";
-  //     if (num < 5) {
-  //       color = "color:#000";
-  //     }
-  //     return color;
-  //   },
-  //   selectTotalColor(num) {
-  //     let color = "color:#538035";
-  //     if (num < 5) {
-  //       color = "color:#7f7e7f";
-  //     }
-  //     return color;
-  //   },
-  //   getCompanyScore(idx) {
-  //     if (!this.companyData) return 0;
-  //     return this.companyData[idx];
-  //   },
-  // },
+  methods: {
+    selectScoreColor(num) {
+      let color = "color:#578339";
+      if (num < 5) {
+        color = "color:#000";
+      }
+      return color;
+    },
+    selectTypesColor(num) {
+      let color = "color:#25BB6A";
+      if (num < 5) {
+        color = "color:#000";
+      }
+      return color;
+    },
+    getCompanyScore(idx) {
+      if (!this.companyData) return 0;
+      return this.companyData[idx];
+    },
+  },
   components: { BarChart },
   props: {
-    selectCompany: String,
+    // selectCompany: String,
     currentTab: Number,
   },
-  // beforeUpdate() {
-  //   switch (this.selectCompany) {
-  //     case "삼성전자":
-  //       console.log("check", data.삼성전자);
-  //       this.companyData = data.삼성전자;
-  //       break;
-  //     case "카카오":
-  //       this.companyData = data.카카오;
-  //       break;
-  //     case "LG":
-  //       console.log("check", data.LG);
-  //       this.companyData = data.LG;
-  //       break;
-  //     default:
-  //       this.companyData = [0, 0, 0, 0, 0];
-  //       break;
-  //   }
-  // },
+
+  beforeUpdate() {
+    switch (this.selectCompany) {
+      case "삼성전자":
+        console.log("check", data.삼성전자);
+        this.companyData = data.삼성전자;
+        break;
+      // case "카카오":
+      //   this.companyData = data.카카오;
+      //   break;
+      // case "LG":
+      //   console.log("check", data.LG);
+      //   this.companyData = data.LG;
+      //   break;
+      default:
+        this.companyData = [0, 0, 0, 0, 0];
+        break;
+    }
+  },
 };
 </script>
 
@@ -139,7 +136,7 @@ h1 {
   font-size: 0.8rem;
 }
 .left {
-  width: 40px;
+  width: 45px;
 }
 .right {
   width: 45px;
@@ -156,16 +153,42 @@ h1 {
   top: 110px;
   background-color: #fff;
 }
-/* .line {
+.line {
   width: 165px;
+  height: 17px;
   border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineTwo {
+  width: 165px;
+  height: 50px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineThree {
+  width: 165px;
+  height: 83px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineFour {
+  width: 165px;
+  height: 116px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
+}
+.lineFive {
+  width: 165px;
+  height: 149px;
+  border-bottom: 1px solid #d1d1d1;
+  position: fixed;
 }
 .rowOne {
+  border: 1px solid black;
   width: 165px;
   height: 18px;
-  position: fixed;
-  z-index: 10;
-} */
+  z-index: 999;
+}
 #col {
   position: absolute;
   width: 83px;

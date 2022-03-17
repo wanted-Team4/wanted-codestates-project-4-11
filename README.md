@@ -2,7 +2,7 @@
 
 사용자가 입력한 설문조가 결과값을 Vue와 chart.js를 이용하여 구현한 프로젝트입니다.
 
-### 📌 &nbsp;[Team4의 과제 확인하러 가기](https://team4-nexon-kartrider.netlify.app/)
+### 📌 &nbsp;[Team4의 과제 확인하러 가기](https://team4-gravylab.netlify.app/)
 
 ### <br/>
 
