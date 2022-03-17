@@ -19,8 +19,8 @@
             />
           </svg>
       </div>
-      <div class="selectedDiv" v-if="selectedCompany">
-        <span>{{ selectedCompany }}</span>
+      <div class="selectedDiv" v-if="select">
+        <span>{{ select }}</span>
         <button class="resetButton" @click="resetSelectedCompany" >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -63,17 +63,19 @@
 <script>
 export default {
   name: "App",
+  props: ["selectedCompany"],
   data() { 
     return { 
       keyWord: "", 
       company: ["삼성전자", "카카오", "LG"],
       suggestion: [],
-      selectedCompany: "", 
+      select: this.selectedCompany,
     }; 
   }, 
   methods: { 
     resetSelectedCompany () {
-      this.selectedCompany = "";
+      this.select = "";
+      this.$emit('changeSelect', "");
     },
     onKeyupHandler (e) {
       this.keyWord = e.target.value;
@@ -86,7 +88,8 @@ export default {
       )
     },
     onClickHandler (e) {
-      this.selectedCompany = e.target.innerText;
+      this.select = e.target.innerText;
+      this.$emit('changeSelect', e.target.innerText);
       this.keyWord = "";
     }
   },
@@ -96,9 +99,11 @@ export default {
 
 <style>
 .wrapper {
-  width: 350px;
+  width: 80%;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .resultDiv {
