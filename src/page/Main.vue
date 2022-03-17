@@ -4,7 +4,7 @@
     <Search :selectedCompany="selectedCompany" @changeSelect="changeSelect" />
     <PentagonChart />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
-    <MyResult :currentTab="currentTab" />
+    <MyResult :selectedCompany="selectedCompany" :currentTab="currentTab" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      selectedCompany: "", 
+      selectedCompany: "",
       currentTab: 0,
       tabs: [
         {
@@ -59,7 +59,7 @@ export default {
     },
     changeSelect(company) {
       this.selectedCompany = company;
-    }
+    },
   },
 };
 </script>
