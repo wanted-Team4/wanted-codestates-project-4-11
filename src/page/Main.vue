@@ -2,7 +2,7 @@
   <div class="container">
     <PentagonChart />
     <TabPart :tabs="tabs" :currentTab="currentTab" @changeTab="changeTab" />
-    <MyResult />
+    <MyResult :currentTab="currentTab" />
   </div>
 </template>
 

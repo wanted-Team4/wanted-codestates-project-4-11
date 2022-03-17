@@ -74,35 +74,48 @@ export default defineComponent({
           backgroundColor: "#6e3cf9",
           barThickness: 5,
         },
-        {
-          // 삼성전자
-          data: [-10, -9, -9, -5, 7],
-          backgroundColor: "#ffd966",
-          barThickness: 5,
-        },
+        // {
+        //   // 삼성전자
+        //   data: [-10, -9, -9, -5, 7],
+        //   backgroundColor: "#ffd966",
+        //   barThickness: 5,
+        // },
+        // {
+        //   // 카카오
+        //   data: [-6, -7, -7, -8, 9],
+        //   backgroundColor: "#ffd966",
+        //   barThickness: 5,
+        // },
+        // {
+        //   // LG
+        //   data: [-7, -7, -7, -7, -7],
+        //   backgroundColor: "#ffd966",
+        //   barThickness: 5,
+        // },
       ],
     }));
     return { testData, options };
   },
 
-  // beforeUpdate() {
-  //   if (this.currentTab === 2) {
-  //     this.testData.datasets[0].data[0] = 0;
-  //   } else {
-  //     this.testData.datasets[0].data[0] =
-  //       this.userScore > 5 ? this.userScore * -1 : this.userScore;
-  //   }
-  //   if (!this.selectCompany || this.currentTab === 1) {
-  //     this.testData.datasets[0].data[1] = 0;
-  //   } else {
-  //     this.testData.datasets[0].data[1] =
-  //       this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
-  //   }
-  // },
-  // beforeMount() {
-  //   this.testData.datasets[0].data[0] =
-  //     this.userScore > 5 ? this.userScore * -1 : this.userScore;
-  // },
+  beforeUpdate() {
+    // 모두 0, 본인 1, 회사 2
+    if (this.currentTab === 2) {
+      this.testData.datasets[1].data[0] = 0;
+    } else {
+      this.testData.datasets[0].data[0] =
+        this.userScore > 5 ? this.userScore * -1 : this.userScore;
+    }
+    if (!this.selectCompany || this.currentTab === 1) {
+      this.testData.datasets[0].data[0] = 0;
+    } else {
+      this.testData.datasets[0].data[1] =
+        this.companyScore > 5 ? this.companyScore * -1 : this.companyScore;
+    }
+  },
+  beforeMount() {
+    this.testData.datasets[0].data;
+    // this.userScore > 5 ? this.userScore * -1 : this.userScore;
+  },
 });
 </script>
 
