@@ -11,11 +11,17 @@ import Data from "../Data";
 Chart.register(...registerables);
 
 export default defineComponent({
-  name: "APP",
+  name: "App",
   components: { RadarChart },
   setup() {
     const setData = {
-      labels: ["적극적인", "자신있는", "책임감있는", "개인주의", "수평적인"],
+      labels: [
+        ["적극적인", "Aggressive"],
+        ["\n\n자신있는", "Confident"],
+        ["\n\n책임감있는", "Responsible"],
+        ["개인주의\n", "Individual"],
+        ["수평적인\n", "Horizontal"],
+      ],
       datasets: [
         {
           label: "본인",
@@ -25,7 +31,8 @@ export default defineComponent({
         },
         {
           label: "회사",
-          // data: Data.company,
+          //Data.js 파일에 있는 회사데이터를 보여줍니다. 현재 검색과 탭이 어떻게 데이터를 넘겨주는지 몰라서 일단 주석처리해놨습니다. 추가하면 노란색 차트 뜹니당
+          // data: Data.company
           background: "rgba(255, 193, 74, 0.32)",
           borderColor: "#FFD335",
         },
@@ -87,21 +94,18 @@ export default defineComponent({
   beforeUpdate() {
     const tabConvert = {
       tab: {
-        //모두
-        0: (searchCompany) => {
+        all: (searchCompany) => {
           this.resultData.datasets[0].data = [...Data["user"]];
           this.resultData.datasets[1].data = [...Data[searchCompany]];
           this.show(0);
           this.show(1);
         },
-        //유저
-        1: () => {
+        user: () => {
           this.resultData.datasets[0].data = [...Data["user"]];
           this.show(0);
           this.hide(1);
         },
-        //회사
-        2: (searchCompany) => {
+        company: (searchCompany) => {
           this.resultData.datasets[1].data = [...Data[searchCompany]];
           this.hide(0);
           this.show(1);
