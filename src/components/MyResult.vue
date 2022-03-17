@@ -26,7 +26,11 @@
       <div class="lineFour"></div>
       <div class="lineFive"></div>
       <div id="col"></div>
-      <BarChart :currentTab="currentTab" :companyScore="getCompanyScore(idx)" />
+      <BarChart
+        :userScore="user"
+        :currentTab="currentTab"
+        :selectCompany="selectCompany"
+      />
     </div>
   </div>
 </template>
@@ -42,14 +46,17 @@ const types = [
   ["개인성향", "조직성향"],
   ["수평사고", "위계사고"],
 ];
+
+const selectCompany = "삼성전자";
+
 export default {
   name: "App",
   data() {
     return {
       user: data.user,
-      companyData: undefined,
+      // companyData: companyData,
       types: types,
-      selectCompany: "삼성전자",
+      selectCompany: selectCompany,
     };
   },
   methods: {
@@ -67,10 +74,10 @@ export default {
       }
       return color;
     },
-    getCompanyScore(idx) {
-      if (!this.companyData) return 0;
-      return this.companyData[idx];
-    },
+    // getCompanyScore(idx) {
+    //   if (!this.companyData) return 0;
+    //   return this.companyData[idx];
+    // },
   },
   components: { BarChart },
   props: {
@@ -78,24 +85,15 @@ export default {
     currentTab: Number,
   },
 
-  beforeUpdate() {
-    switch (this.selectCompany) {
-      case "삼성전자":
-        console.log("check", data.삼성전자);
-        this.companyData = data.삼성전자;
-        break;
-      // case "카카오":
-      //   this.companyData = data.카카오;
-      //   break;
-      // case "LG":
-      //   console.log("check", data.LG);
-      //   this.companyData = data.LG;
-      //   break;
-      default:
-        this.companyData = [0, 0, 0, 0, 0];
-        break;
-    }
-  },
+  // beforeUpdate() {
+  //   if (this.selectCompany === "삼성전자") {
+  //     this.companyData = data.company.삼성전자;
+  //   } else if (this.selectCompany === "카카오") {
+  //     this.companyData = data.company.카카오;
+  //   } else {
+  //     this.companyData = data.company.LG;
+  //   }
+  // },
 };
 </script>
 
