@@ -58,9 +58,10 @@ export default {
   padding: 0;
 }
 .NavBarBox {
-  width: 100%;
+  width: 70%;
   height: 72px;
   display: flex;
+  margin: 0 auto;
 }
 .leftBox {
   width: 50%;
