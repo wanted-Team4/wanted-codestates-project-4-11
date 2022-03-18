@@ -4,8 +4,6 @@
 
 ### 📌 &nbsp;[Team4의 과제 확인하러 가기](https://team4-gravylab.netlify.app/)
 ### <br/>
-## 📊 View
-
 ## 📊 Implement
 
 ### Stack
